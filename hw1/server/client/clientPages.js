@@ -7,7 +7,7 @@ const index = `
                         <label>Title:</label>
                         <input type="text" class="form-control" name="title" placeholder="Title">
                     </div>
-                    <input type="submit" value="Get some movies" class="btn btn-primary">
+                    <input type="submit" value="Get data" class="btn btn-primary">
                 </div>
             </form>
         </div>

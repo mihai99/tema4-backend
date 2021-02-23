@@ -7,6 +7,7 @@ const utils = require('./utils');
 const { resolve } = require('path');
 require('dotenv').config();
 const {performance} = require('perf_hooks');
+const { isNumber } = require('util');
 
 const URLS = {
     OMDB : 'http://www.omdbapi.com/?i=tt3896198&apikey=',
@@ -19,9 +20,13 @@ const client = new Twitter({
     access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
-console.log(process.env.WORDS_KEY)
 
+let statusCodes200 = 0
+let statusCodeError = 0
+let middleTime = 0
+let totalNumberOfRequests = 0
 let concurentNrOfRequests = 0
+
 const server = http.createServer(function(request, response) {
   console.dir(request.param)
 
@@ -38,6 +43,7 @@ const server = http.createServer(function(request, response) {
           case '/request':
                 //parse response from form
                 concurentNrOfRequests++;
+                totalNumberOfRequests+=3;
                 let parsed = querystring.parse(body)
                 let {title} = parsed
 
@@ -76,7 +82,9 @@ const server = http.createServer(function(request, response) {
 
                     let startTime = performance.now()
                     let omdbResult = await axios.get(omdbUrl);
+                    statusCodes200++
                     let omdbTime = performance.now() - startTime
+                    middleTime+=omdbTime
                     startTime = performance.now()
                     let tweeterResult = await client.get(tweeterUrl, {q: title, count: 1})
                     let tweeterTime = performance.now() - startTime
@@ -91,7 +99,8 @@ const server = http.createServer(function(request, response) {
                         utils.requestStack[index].time = omdbTime
                         utils.requestStack[index].response = JSON.stringify(omdbResult.data)
                     }
-
+                    statusCodes200++
+                    middleTime+=tweeterTime
                     index = utils.requestStack.findIndex(r => r.id === requestTweeter.id)
                     if (index>=0){
                         utils.requestStack[index].status = 'Done'
@@ -107,6 +116,7 @@ const server = http.createServer(function(request, response) {
                     }
                     
                 } catch (error) {
+                    statusCodeError+=1
                     console.error(error)
                 }
                 //start third request to words api
@@ -130,6 +140,7 @@ const server = http.createServer(function(request, response) {
                     let startTime = performance.now()
                     let resp = await axios.get(gifyURL);
                     let gifyTime = performance.now()- startTime
+                    middleTime+=gifyTime
                     let index = utils.requestStack.findIndex(r => r.id === requestGiphy.id)
                     if (index>=0){
                         utils.requestStack[index].status = 'Done'
@@ -139,7 +150,9 @@ const server = http.createServer(function(request, response) {
                     if (resp.data.data.length && resp.data.data[0] &&  resp.data.data[0].images){
                         gifUrl = resp.data.data[0].images.original.url
                     }  
+                    statusCodes200++
                 } catch (error) {
+                    statusCodeError+=1
                     console.error(error)
                 }     
                 response.writeHead(200, {'Content-Type': 'text/html'})
@@ -176,6 +189,10 @@ const server = http.createServer(function(request, response) {
                                 <h2 class="card-title">Metrics</h2>
                                 <p>Running web services:${runningWebServices || 0} </p>
                                 <p>Concurent number of requests: ${concurentNrOfRequests}</p>
+                                <p>Total number of requests: ${totalNumberOfRequests} </p>
+                                <p>Status code 200: ${statusCodes200} </p>
+                                <p>Status code error: ${statusCodeError}</p>
+                                <p>Time: ${middleTime/totalNumberOfRequests || 0} </p>
                             </div>          
                         </div>`
             let table = `<table class="table">
