@@ -10,16 +10,52 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:3000/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "POST books",
 			"request": {
-				"method": "GET",
-				"header": [],
-				"url": null
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "\"application/json\"",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"test book\",\r\n    \"description\": \"test description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books"
+					]
+				}
 			},
 			"response": []
 		},
@@ -28,25 +64,67 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:3000/books/603fff40d88bdd2fc4296158",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"603fff40d88bdd2fc4296158"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "PUT book by id",
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\": \"Dispozitive infernale\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/books/603fff40d88bdd2fc4296158",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"603fff40d88bdd2fc4296158"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "DELETE book by id",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:3000/books/6040000fd88bdd2fc429615a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"books",
+						"6040000fd88bdd2fc429615a"
+					]
+				}
 			},
 			"response": []
 		},
@@ -55,16 +133,45 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:3000/authors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"authors"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "POST authors",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Test author\",\r\n    \"biography\": \"Test biography\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/authors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"authors"
+					]
+				}
 			},
 			"response": []
 		},
@@ -73,27 +180,95 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:3000/authors/603ffe7fd88bdd2fc4296157",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"authors",
+						"603ffe7fd88bdd2fc4296157"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "PUT author by id",
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "{\"biography\": \"The best author ever!\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/authors/603ffe7fd88bdd2fc4296157",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"authors",
+						"603ffe7fd88bdd2fc4296157"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "DELETE author by id",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://localhost:3000/authors/603ff7002fdbc140d4d5ae56",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"authors",
+						"603ff7002fdbc140d4d5ae56"
+					]
+				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:3000"
 		}
 	]
 }
