@@ -1,5 +1,6 @@
 const db = require('../models');
 const { modelName } = require('../models/author');
+const mongoose = require('mongoose');
 
 const getAllAuthors = async(req,res) =>{
     try {
@@ -24,7 +25,11 @@ const getAllAuthors = async(req,res) =>{
 const getAuthorById = async(req,res) =>{
     try {
         let id = req.url.split('/')[2]
-        const author = await db.Author.findById(id).populate("books", "name").exec();
+        if (!mongoose.Types.ObjectId.isValid(id)){
+            res.writeHead(404, {'Content-Type': 'text/json'})
+            return res.end(JSON.stringify({message: "Invalid id provided"}))
+        }
+        const author = await db.Author.findById(id).populate("books").exec();
         if (!author){
             res.writeHead(404, {'Content-Type': 'text/json'})
             return res.end(JSON.stringify({message: "The author doesn't exist!"}))
@@ -73,6 +78,10 @@ const editAuthor = async(req,res) => {
             return res.end(JSON.stringify({message: "The request doesn't contain all required data!"}))
         }
         let id = req.url.split('/')[2]
+        if (!mongoose.Types.ObjectId.isValid(id)){
+            res.writeHead(404, {'Content-Type': 'text/json'})
+            return res.end(JSON.stringify({message: "Invalid id provided"}))
+        }
         const author = await db.Author.findById(id);
         if (!author){
             res.writeHead(404, {'Content-Type': 'text/json'})
@@ -94,6 +103,10 @@ const editAuthor = async(req,res) => {
 const deleteAuthorById = async(req,res) =>{
     try {
         let id = req.url.split('/')[2]
+        if (!mongoose.Types.ObjectId.isValid(id)){
+            res.writeHead(404, {'Content-Type': 'text/json'})
+            return res.end(JSON.stringify({message: "Invalid id provided"}))
+        }
         const author = await db.Author.findByIdAndDelete(id);
         if (!author){
             res.writeHead(404, {'Content-Type': 'text/json'})
