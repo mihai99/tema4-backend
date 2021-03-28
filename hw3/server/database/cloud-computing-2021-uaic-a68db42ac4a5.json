@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cloud-computing-2021-uaic",
+  "private_key_id": "a68db42ac4a5d6fda8a7ff269e3718c7b3f8ca8e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDoOzlRLf5g/C4U\nHIJ82bPrPe7SD6IHtAtjyfzs4hiuyJ0ue/cWCTqxsSXo0PJWR2csz3pPaMgzB5tB\nVkEFw7muHgpS6lHIFehtgVmz1T5LZietjZ8gSzt/gBwFF0ysjkkGd8jT1RT62cbR\nCxMGfuD9mAuyS509pvcuhpSW7SBjT1sgIeWqQq2JM5t0GUrL0zZ9WVoh+gOeVLT1\nccQytRzPkoaOUPc60rhnCIE7nz+NX/7JqTVUivd6CquEBtdcH2HXBUHx1Yiuv5Y7\nEzx39HKHaTNgmF1BC3bqzJ/AObibgujJpq4sUgRy31nnmNHDkIDaJi8uztNw+9Cx\nlmSIzwpPAgMBAAECggEAJDGtc7kK4fERJMJIFg7/axpadokdiZImikrIrYoUKxLf\nkzHv5xJ7gDE/Ws33Tw95hZ2KjwYiLviFr9pdGk8Qc+eBAr48DnFXqdAp+7da/6Ow\nFcJc+squ6bwSNzrpO3rrkmNTPKyuRJByMPzHCNFNM0j3XbZKOfnOoYTec2K0FGCq\n+BNuFuS716Whkg9TYfbvSf+ScvZBXBVJ0DoKUEs8C0HNeWvLqCy2RgpYb04ke3FW\nDpqlakB0EgSwUOf9qMgkTWamUmkARxT6TDBDNwcjnA/rHGXbUojpEyxYHlK6b58e\nNkdN8Qk1RJbzFbJkRNH1bbaAD1ws2WZLWBJrEUzDjQKBgQD8jSabZmrZ39eZjFrz\nZqB9i3/kbrPma+ezi1Um2tVD0bB8y906FzXLX+QwjX3jPIOoK3JNqv8T/FovuPMS\nBtylMkfe90BoNxGvskA+OzPn8DxgY2rJo/nvLzYqzzhgkKaKIveHmynji/Boee0r\nKoNd5L0mExA+SYRT/LaEcapP9QKBgQDrZwo5QGJ1SOd7qFpVClpJaBwO6kYxlwey\nyEyDfIDLkyNp97AgcLxfiRRFaRZovJqNMunn8dlK4seUTX+jHFjaY2jVnMRWSehO\nF3DZEdKMzskX3xtt804icAhPzlnPhLeFySdwtlSDFpK381iImrmPqGFXuhRm+Sm7\nECK8gwlaswKBgQCP3oD9yexYzZFuoWw2eGI44r0qjn3hZ9sIhvktN0CCb/PQQ/p0\n20AD6U5+8juitZhytr1YzW6eHgXqZbviqxIK8YfL1qJUO/rRUgQS73r0SAC9ECWH\nVOhOf2CmJoIBUKXuz1ifYZ8NR2zet4aKLp/DX0j5Zaa9NPgzOCVpca8J+QKBgQDh\nTj/kyBD0fJDCNEIxPrVnqPOh+uywLgO6RCeneZS0Q+ITXHQAuKYzMjpqrMg7+rha\nCK8DxuDY4fFvqjVN4qXQcHE4ctEgXaCwjZL+0CYbixfBd1MDi2nvYBc0eyZOjpIw\nxHSxVnHQ/dvzoD/Oj3inXNu+YWWBoV0lo637i9d6LQKBgQCsYuyNFjK0+xmmTF+/\n1oDS4trquSwQjlD520zwHZyulS/mkRP7pEI84bdCOuUSzfDKz6e0nvWWdkzT0lJk\ntws4ozGbOq+YTsPJ3NmAqs8MRFiDO4uQFBl/GEJgCxgKjehnRBqW2JlSvVpWd2eM\nqnWukLLmFRBHoMNTjOuDlSy17A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "homework3@cloud-computing-2021-uaic.iam.gserviceaccount.com",
+  "client_id": "107590588814336148719",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/homework3%40cloud-computing-2021-uaic.iam.gserviceaccount.com"
+}
