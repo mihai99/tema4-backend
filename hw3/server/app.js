@@ -4,6 +4,9 @@ const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
 
+const {createBoard, getBoard, deleteBoard, editBoard} = require('./routes/boards/index');
+const { createPost, getPosts ,getPost, deletePost,editPost} = require("./routes/posts");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -44,28 +47,25 @@ app.use("/register", async (req, res) => {
   }
 });
 
-app.post("/boards", async (req, res) => {
-  let { name, description } = req.body;
-  console.log(name, description);
-  if (!name) {
-    console.log(name);
-    res.status(400).send({ error: "Missing name" });
-    return;
-  }
-  try {
-    let resp = await db.collection("boards").add({
-      name,
-      description,
-    });
-    console.log(resp.id);
-    res.status(201).send({ message: "Board created", id: resp.id });
-    return;
-  } catch (error) {
-    console.log("err", error);
-    res.status(500).send({ error: "Something bad happend" });
-  }
-});
+app.post("/board",createBoard);
+
+app.get('/board/:id',getBoard)
+
+app.delete('/board/:id',deleteBoard)
+
+app.post('/board/:id',editBoard)
+
+app.post('/board/:boardId/post',createPost)
+
+app.get('/board/:boardId/posts',getPosts)
+
+app.get('/board/:boardId/post/:postId',getPost)
+
+app.delete('/board/:boardId/post/:postId',deletePost)
+
+app.post('/board/:boardId/post/:postId',editPost)
+
 
 app.listen(8080, () =>
-  console.log("API is running on http://localhost:8080/login")
+  console.log("API is running on http://localhost:8080")
 );
