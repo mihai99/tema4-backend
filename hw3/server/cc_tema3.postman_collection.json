@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "4d6bf90e-e86b-4bcf-8870-e558ccd4be86",
+		"name": "cc_tema3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CREATE BOARD",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"asdfasdf\",\n    \"description\":\"broh\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/boards",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"boards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE BOARD BY ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/board/w5nPRi5Zf3I9Yl8pnFd6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"board",
+						"w5nPRi5Zf3I9Yl8pnFd6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT BOARD",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"sadf\",\n\n\"description\":\"asdf\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/board/TWyNmzZPifoShGHE9SUv",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"board",
+						"TWyNmzZPifoShGHE9SUv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BOARD BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/board/TWyNmzZPifoShGHE9SUv",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"board",
+						"TWyNmzZPifoShGHE9SUv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"asdfsadf\",\n    \"description\":\"asdfasdf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/board/V4GXgO8BJzv5qpZDcXfI/post",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"board",
+						"V4GXgO8BJzv5qpZDcXfI",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET POSTS IN A BOARD",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/board/V4GXgO8BJzv5qpZDcXfI/posts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"board",
+						"V4GXgO8BJzv5qpZDcXfI",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET POST BY ID AND BOARD ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/board/V4GXgO8BJzv5qpZDcXfI/post/1tTJCheTkW2cNrHpWWFy",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"board",
+						"V4GXgO8BJzv5qpZDcXfI",
+						"post",
+						"1tTJCheTkW2cNrHpWWFy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT POST BY ID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"email\":\"hello@gmail.com\"   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/board/V4GXgO8BJzv5qpZDcXfI/post/1tTJCheTkW2cNrHpWWFy",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"board",
+						"V4GXgO8BJzv5qpZDcXfI",
+						"post",
+						"1tTJCheTkW2cNrHpWWFy"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
