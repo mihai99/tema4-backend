@@ -1,0 +1,17 @@
+{
+  "name": "cloud_functions",
+  "version": "1.0.0",
+  "description": "cloud functions for homework 4",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/service-bus": "^7.0.5",
+    "@sendgrid/mail": "^7.4.2",
+    "tedious": "^1.14.0",
+    "tedious-connection-pool": "^1.0.5"
+  }
+}
