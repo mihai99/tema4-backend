@@ -85,7 +85,7 @@ app.post("/board/:boardId/post/:postId", editPost);
 
 app.post("/board/:boardId/user", subsController.createSubscriber);
 
-app.post('/file/upload/',uploadFileRoute)
+app.post('/file/upload/:id',uploadFileRoute)
 
 app.get('/file/:id',getFileRoute)
 app.get('/test',(req,res)=>

@@ -4,14 +4,15 @@ const container = 'taskcontainer'
 const multiparty = require('multiparty')
 const uploadFileRoute = (req,res)=>{
     try{
-    if(true){
+        let id = req.params.id
+        
         var blobService = azure.createBlobService();
         var form = new multiparty.Form();
         form.on('part', function(part) {
             if (part.filename) {
                 var size = part.byteCount - part.byteOffset;
                 var name = part.filename;
-                blobService.createBlockBlobFromStream(container, name, part, size, function(error) {
+                blobService.createBlockBlobFromStream(container, id, part, size, function(error) {
                     if (error) {
                         res.send({ message: error });
                     }
@@ -21,10 +22,8 @@ const uploadFileRoute = (req,res)=>{
             }
         });
         form.parse(req);
-    }
-    else{
-        res.status(400).send(JSON.stringify({message:'Must include a file and an id '}))
-    }
+    
+
     }
     catch(e){
 
