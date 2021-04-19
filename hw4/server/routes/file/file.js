@@ -5,6 +5,7 @@ const multiparty = require('multiparty')
 const uploadFileRoute = (req,res)=>{
     try{
         let id = req.params.id
+        console.log(id)
         
         var blobService = azure.createBlobService();
         var form = new multiparty.Form();
@@ -22,11 +23,8 @@ const uploadFileRoute = (req,res)=>{
             }
         });
         form.parse(req);
-    
-
     }
     catch(e){
-
     }
 }
 

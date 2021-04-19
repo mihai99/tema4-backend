@@ -1,13 +1,14 @@
 const pool = require("../../database/db");
 const { Request } = require("tedious");
 const { sendMessage } = require("../../services/pubsub");
-
+const { v4 }= require('uuid');
+var base64 = require('base-64');
 const createPost = async (req, res) => {
   let boardId = req.params.boardId;
   let email = req.body.email ? req.body.email : null;
   let { title, body } = req.body;
-
-  if (!title || !body) {
+  let file_id = v4().toString();
+  if (!title || !body ||!file_id) {
     res.status(400).send({ error: "Missing title or body" });
     return;
   }
@@ -16,21 +17,22 @@ const createPost = async (req, res) => {
     if (err) {
       return res.status(500).send({ error: "Something bad happened" });
     }
-    const sql = `INSERT INTO cards(title, body, board_id)
-    VALUES (' ${title}', '${body}', ${boardId}); select @@identity`;
+    const sql = `INSERT INTO cards(title, body, board_id,file_id)
+    VALUES (' ${title}', '${body}', ${boardId},'${file_id}'); select @@identity`;
     const request = new Request(sql, (err, rowCount) => {
       if (err) {
+        
         console.error("Cards query error", err);
         return res.status(500).send({ error: "Something bad happened" });
       } else {
-        console.log("All good", rowCount);
+        // console.log("All good", rowCount);
         sendMessage(boardId);
         connection.release();
       }
     });
     request.on("row", (columns) => {
       console.log(columns);
-      res.status(201).send({ message: "Post created", id: columns[0].value });
+      res.status(201).send({ message: "Post created", id: columns[0].value ,file_id:file_id});
     });
     connection.execSql(request);
     return;
@@ -56,11 +58,12 @@ const getPosts = async (req, res) => {
         console.log("All good", rowCount, rows);
         const arrayObj = [];
         rows.forEach((row) => {
-          console.log(row);
+          console.log('here',row);
           const newObj = {
             id: row[0].value,
             title: row[1].value || "",
             body: row[2].value || "",
+            file_id :row[5].value||""
           };
           arrayObj.push(newObj);
         });
