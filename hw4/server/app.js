@@ -1,24 +1,33 @@
 const express = require("express");
-const cors = require("cors");
-const app = express();
 const bodyParser = require("body-parser");
 require("dotenv").config();
+const app = express();
+var cors = require('cors');
 
-const db = require("./database/db");
+app.use(cors());
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
 
 const boardController = require("./routes/boards");
 const subsController = require("./routes/subscribers");
 const {
+
   createPost,
   getPosts,
   getPost,
   deletePost,
   editPost,
 } = require("./routes/posts");
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cors());
+const { uploadFileRoute, getFileRoute } = require("./routes/file/file");
 
 app.use("/login", async (req, res) => {
   let { email, password } = req.body;
@@ -76,4 +85,14 @@ app.post("/board/:boardId/post/:postId", editPost);
 
 app.post("/board/:boardId/user", subsController.createSubscriber);
 
+app.post('/file/upload/',uploadFileRoute)
+
+app.get('/file/:id',getFileRoute)
+app.get('/test',(req,res)=>
+{
+  res.send('hello')
+})
+
 app.listen(8080, () => console.log("API is running on http://localhost:8080"));
+
+
