@@ -1,10 +1,10 @@
 const {createBoard,
     getBoard,
     deleteBoard,
-    editBoard
-
+    editBoard,
+    getAllBoards
 } = require('./boards')
 
 module.exports={
-    createBoard,getBoard,deleteBoard,editBoard
+    createBoard,getBoard,deleteBoard,editBoard,getAllBoards
 }

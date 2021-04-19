@@ -2,8 +2,8 @@ const pool = require("../../database/db");
 const { Request } = require("tedious");
 
 const createBoard = async (req, res) => {
-  let { name, description } = req.body;
-
+  let { name, description, userId } = req.body;
+  console.log("Id>>", userId)
   if (!name || !description) {
     console.log(name, description);
     res.status(400).send({ error: "Missing name or description" });
@@ -14,8 +14,8 @@ const createBoard = async (req, res) => {
     if (err) {
       return res.status(500).send({ error: "Something bad happened" });
     }
-    const sql = `INSERT INTO boards(name, description)
-    VALUES (' ${name}', '${description}'); select @@identity`;
+    const sql = `INSERT INTO boards(name, description, user_id)
+    VALUES (' ${name}', '${description}', ${userId}); select @@identity`;
     const request = new Request(sql, (err, rowCount) => {
       if (err) {
         console.error("Boards query error", err);
@@ -71,6 +71,7 @@ const getBoard = async (req, res) => {
       if (err) {
         console.error("Boards query error", err);
         res.status(500).send({ error: "Something bad happend" });
+        return;
       } else {
         if (rowCount == 0) {
           res.status(404).send({ error: "Not found" });
@@ -81,14 +82,71 @@ const getBoard = async (req, res) => {
       }
     });
     request.on("row", (columns) => {
-      console.log(columns);
+      console.log("col>>", columns);
       let obj = {
         id: columns[0].value || -1,
         name: columns[1].value || "",
         description: columns[2].value || "",
+        userId: columns[3] && columns[3].value || ""
       };
       res.status(200).send({ message: "Received Data", data: obj });
     });
+
+    connection.execSql(request);
+  });
+};
+
+
+const getAllBoards = async (req, res) => {
+  console.log("aici")
+  const userId = req.params.user_id;
+  console.log(userId)
+  pool.acquire((err, connection) => {
+    if (err) {
+      return res.status(500).send({ error: "Something bad happened" });
+    }
+    const sql = `SELECT * FROM boards where user_id = ${userId}`;
+    console.log(sql)
+    const request = new Request(sql, (err, rowCount, rows) => {
+      if (err) {
+        console.error("Boards query error", err);
+        res.status(500).send({ error: "Something bad happend" });
+        return;
+      } else {
+        if (rowCount == 0) {
+          res.status(404).send({ error: "Not found" });
+          return;
+        } else {
+          console.log(rows);
+          const result = [];
+          rows.forEach(row => {
+            result.push({
+              id: row[0].value || -1,
+              name: row[1].value || "",
+              description: row[2].value || "",
+              userId: row[3] && row[3].value || ""
+            })
+          })
+          res.status(200).send({ message: "Received Data", data: result })
+        }
+        console.log("All good", rowCount);
+        connection.release();
+      } 
+    });
+    // const boards = []
+    // request.on("row", (columns) => {
+    //   console.log(columns);
+    //   let obj = {
+    //     id: columns[0].value || -1,
+    //     name: columns[1].value || "",
+    //     description: columns[2].value || "",
+    //   };
+    //   boards.push(obj);
+    //   console.log(obj)
+    // });
+    // console.log("board>> ", boards)
+   // res.status(200).send({ message: "Received Data"});
+  //  return;
 
     connection.execSql(request);
   });
@@ -116,3 +174,4 @@ const getBoard = async (req, res) => {
 // };
 
 module.exports = { createBoard, getBoard, deleteBoard };
+module.exports.getAllBoards = getAllBoards;
