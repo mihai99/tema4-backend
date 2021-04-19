@@ -5,7 +5,7 @@ import "./UniqueBoard.scss";
 export default function PostForm(props) {
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [isOn, setisOn] = useState(false);
   useEffect(() => {
     console.log(props);
@@ -23,7 +23,7 @@ export default function PostForm(props) {
   return isOn ? (
     <div className="post-container">
       <form onSubmit={createPost} className="">
-        <p className="error">{error}</p>
+        {/* <p className="error">{error}</p> */}
         <label>
           <input
             type="text"

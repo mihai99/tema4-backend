@@ -1,0 +1,25 @@
+.not-signed-in-container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to left, #56b4d3, #348f50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.not-signed-in-container  button {
+    background-color: #f2cf66;
+    border-bottom: 5px solid #d1b358;
+    text-shadow: 0px -2px #d1b358;
+    position: relative;
+    padding: 5px 20px;
+    margin: 30px auto;
+    width: 200px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: "Pacifico", cursive;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+  }
