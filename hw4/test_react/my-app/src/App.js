@@ -19,7 +19,7 @@ class App extends Component {
       // Create an object of formData 
       const formData = new FormData(); 
      
-      // Update the formData object 
+      // Update the for2mData object 
       formData.append( 
         "file", 
         this.state.selectedFile

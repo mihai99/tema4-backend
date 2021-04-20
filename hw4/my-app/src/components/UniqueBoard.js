@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./UniqueBoard.scss";
-import { get, getFile, post } from "../utils/requests";
+import { get, post } from "../utils/requests";
 import PostForm from "./PostForm";
 // const fakeData = {
 //   name: "Test board",
@@ -31,24 +31,15 @@ export default function UniqueBoard() {
       .then((result) => {
         console.log(result);
         if (result && result.data) {
-       
-          console.log(result.data)
           setBoard(result.data);
         }
       })
       .catch((err) => console.error("something bad happend", err));
     get(boardId + "/posts")
       .then((result) => result.json())
-      .then(async (result) => {
-        console.log("got here",result);
+      .then((result) => {
+        console.log("got here");
         if (result && result.posts) {
-          await Promise.all(
-             result.posts.map(async e=>{
-               console.log("ids", e.file_id)
-               e.url =await getFile(':'+e.file_id)
-               return e
-          }))
-          console.log('fuuuuck')
           setBoardPosts(result.posts);
         }
       })
@@ -59,12 +50,10 @@ export default function UniqueBoard() {
     let postsHtml = [];
     boardPosts &&
       boardPosts.forEach((post) => {
-        console.log(post.url)
         let postHtml = (
           <div className="post" key={post?.title}>
             <h3>{post?.title}</h3>
             <p>{post?.body}</p>
-            {post.url && <img src={post.url} className ="myimg"></img>}
           </div>
         );
         postsHtml.push(postHtml);
