@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/23764051-1d96-4880-84b0-e27efb88edbd/resourceGroups/mihaiblaga99/providers/Microsoft.Web/sites/trema4-backend",
+    "appService.deploySubpath": "."
+}
